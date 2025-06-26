@@ -464,7 +464,19 @@ void lectura(FILE *f_music, struct header **v_encabezado,struct muestras_audios 
 
 }
 
+void reproduccion(struct pistas *v_pistas,uint32_t cantidad_pistas){
+    printf("\nSeleccione una pista de audio:\n");
+    int n_pista;
+    do{
+        scanf("%d",&n_pista);
+        if(n_pista<0 || n_pista> cantidad_pistas){
+            printf("PISTA INVALIDA\n");
+        }
+    }while(n_pista<0 || n_pista> cantidad_pistas);
 
+    play_audio(v_pistas[n_pista].encabezado.sample_rate,v_pistas[n_pista].encabezado.sample_count,v_pistas[n_pista].muestra_sound.sound_data);
+
+}
 
 
 

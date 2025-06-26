@@ -81,3 +81,7 @@ struct pistas{
 };
 
 void lectura(FILE *f_music, struct header **v_encabezado,struct muestras_audios **v_muestras_audios,uint32_t *cantidad_pistas,struct pistas **v_pistas);
+
+#include "audio_player.h"
+
+void reproduccion(struct pistas *v_pistas,uint32_t cantidad_pistas);
