@@ -434,7 +434,7 @@ void lectura(FILE *f_music, struct header **v_encabezado,struct muestras_audios 
         fread(&encabezado_aux.sample_rate,sizeof(uint32_t),1,f_music);
         fread(&encabezado_aux.sample_count,sizeof(uint32_t),1,f_music);
         fread(&encabezado_aux.sound_name,sizeof(char),64,f_music);
-        //ua vez leido todo UN encabezado lo guardo dinamicamente
+        //una vez leido todo UN encabezado lo guardo dinamicamente
         (*v_encabezado) = realloc(*v_encabezado,(cant+1)*sizeof(struct header));
         (*v_encabezado)[cant] = encabezado_aux;
 

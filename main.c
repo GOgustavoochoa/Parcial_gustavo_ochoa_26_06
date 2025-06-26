@@ -33,6 +33,24 @@ int main(){
     escribir_raw(v_pistas,cantidad_pistas,f_write_sound);
 
 
+    //Para probar la correcta escritura del .raw abro nuevamente el archivo en modo rb y verifico la correcta escritura
+
+    FILE *f_read_sound = fopen("sound.raw", "rb");
+    if(f_read_sound == NULL){
+        printf("error al abrir sound.raw para lectura\n");
+        return -1;
+    }
+
+    float *v = malloc(v_pistas[0].encabezado.sample_count * sizeof(float));
+    fread(v, sizeof(float), v_pistas[0].encabezado.sample_count, f_read_sound);
+    fclose(f_read_sound);
+
+    // Reproducir la pista
+    play_audio(v_pistas[0].encabezado.sample_rate, v_pistas[0].encabezado.sample_count, v);
+    free(v);
+    
+    
+
     fclose(f_write_sound);
     fclose(f_music);
     free(v_encabezado);
