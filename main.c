@@ -18,13 +18,22 @@ int main(){
 
     //muestro nombre de cada pista de audio.
     for (int i = 0; i < cantidad_pistas; i++) {
-        printf("Pista %d: %s\n", i, v_pistas[i].encabezado.sound_name);
+        printf("Pista [%d]: %s\n", i, v_pistas[i].encabezado.sound_name);
     }
 
     //Funcion para seleccionar desde consola una pista y reproducirla 
     reproduccion(v_pistas,cantidad_pistas);
 
+    //Funcion para seleccionar desde consola cualquier pista y escribir las muestras de audio en un archivo 'sound.raw'
+    FILE *f_write_sound = fopen("sound.raw","wb"); 
+    if(f_write_sound == NULL){
+        printf("error...");
+        return -1;
+    }
+    escribir_raw(v_pistas,cantidad_pistas,f_write_sound);
 
+
+    fclose(f_write_sound);
     fclose(f_music);
     free(v_encabezado);
     free(v_muestras_audios);

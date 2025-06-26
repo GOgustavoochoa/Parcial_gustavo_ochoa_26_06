@@ -423,7 +423,7 @@ void lectura(FILE *f_music, struct header **v_encabezado,struct muestras_audios 
 
     //leo una unica vez la cantidad de pistas que va servir para definir el tamaño de la estructuras pistas
     fread(cantidad_pistas,sizeof(uint32_t),1,f_music);
-    printf("numero de pistas:[%u]\n",*cantidad_pistas);
+    printf("\nnumero de pistas:[%u]\n\n",*cantidad_pistas);
     //primero me concentro en leer los encabezados
 
     uint32_t cant=0;
@@ -465,7 +465,7 @@ void lectura(FILE *f_music, struct header **v_encabezado,struct muestras_audios 
 }
 
 void reproduccion(struct pistas *v_pistas,uint32_t cantidad_pistas){
-    printf("\nSeleccione una pista de audio:\n");
+    printf("\nSeleccione una pista de audio: ");
     int n_pista;
     do{
         scanf("%d",&n_pista);
@@ -478,8 +478,18 @@ void reproduccion(struct pistas *v_pistas,uint32_t cantidad_pistas){
 
 }
 
+void escribir_raw(struct pistas *v_pistas,uint32_t cantidad_pistas,FILE *f_write_sound){
 
+    printf("\nIngrese numero de pista a escribir en formato (.raw): ");
+    int n_pista;
+    do{
+        scanf("%d",&n_pista);
+        if(n_pista<0 || n_pista> cantidad_pistas){
+            printf("PISTA INVALIDA\n");
+        }
+    }while(n_pista<0 || n_pista> cantidad_pistas);
 
-
-
+    fwrite(v_pistas[n_pista].muestra_sound.sound_data,sizeof(float),v_pistas[n_pista].encabezado.sample_count,f_write_sound);
+    printf("PISTA NUMERO [%d] ESCRITA CORRECTAMENTE...\n", n_pista);
+}
 

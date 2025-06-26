@@ -85,3 +85,5 @@ void lectura(FILE *f_music, struct header **v_encabezado,struct muestras_audios 
 #include "audio_player.h"
 
 void reproduccion(struct pistas *v_pistas,uint32_t cantidad_pistas);
+
+void escribir_raw(struct pistas *v_pistas,uint32_t cantidad_pistas,FILE *f_write_sound);
